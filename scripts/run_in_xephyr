@@ -1,0 +1,28 @@
+#!/bin/bash
+
+find_x_display() {
+    local xsock_dir=/tmp/.X11-unix
+    local i
+    for ((i = 0;i < 1024;i++)); do
+        [[ -e ${xsock_dir}/X${i} ]] && continue
+        echo :${i}
+        return
+    done
+}
+
+start_xephyr() {
+    new_display=$(find_x_display)
+    Xephyr ${new_display} -ac -resizeable -displayfd 5 5>&1
+}
+
+run_in_xephyr() {
+    start_sub_process() {
+        read display
+        export DISPLAY=:${display}
+        matchbox-window-manager&
+        "$@"
+    }
+    start_xephyr | start_sub_process "$@"
+}
+
+run_in_xephyr "$@"
