@@ -1,0 +1,44 @@
+#!/bin/bash
+
+declare -A PLANAHEAD_MAP
+PLANAHEAD_INSTALL_DIR=/opt/planahead
+NEW_HOME=~
+
+[[ -f ~/.config/nacs-lab/planahead_env.sh ]] && \
+    . ~/.config/nacs-lab/planahead_env.sh
+
+mkdir -p "${NEW_HOME}" "${PLANAHEAD_INSTALL_DIR}" "/tmp/planahead"
+
+ln -sf "${PLANAHEAD_INSTALL_DIR}" /tmp/planahead/planahead
+ln -sf "${NEW_HOME}" /tmp/planahead/home
+
+for name in "${!PLANAHEAD_MAP[@]}"; do
+    mkdir -p "${PLANAHEAD_MAP["${name}"]}"
+    mkdir -p "$(dirname "/tmp/planahead/${name}")"
+    ln -sf "${PLANAHEAD_MAP["${name}"]}" "/tmp/planahead/${name}"
+done
+
+export XAUTHORITY=${XAUTHORITY:-~/.Xauthority}
+export HOME="/tmp/planahead/home"
+
+XILINX_HOME="/tmp/planahead/planahead/14.7"
+
+# export XILINXD_LICENSE_FILE=PORTNUMBER@HOSTNAME
+export XILINXD_LICENSE_FILE="${XILINX_HOME}/ISE_DS/xilinx_ise.lic"
+
+ISE_DS_PATH="${XILINX_HOME}/ISE_DS"
+
+PATH="$PATH:$ISE_DS_PATH/ISE/bin/lin64:$ISE_DS_PATH/EDK/bin/lin64"
+PATH="$PATH:$ISE_DS_PATH/common/bin/lin64"
+PATH="$PATH:$ISE_DS_PATH/ISE/sysgen/bin/lin64:$ISE_DS_PATH/ISE/sysgen/util"
+export PATH="$PATH:$ISE_DS_PATH/PlanAhead/bin"
+export XILINX="$ISE_DS_PATH/ISE/"
+export XILINX_DSP="$ISE_DS_PATH/ISE/"
+export XILINX_PLANAHEAD="$ISE_DS_PATH/PlanAhead/"
+. "$ISE_DS_PATH/settings64.sh"
+
+cd ~
+LANG=C
+QT_PLUGIN_PATH=
+QT_IM_MODULE=
+exec planAhead "$@"
