@@ -1,11 +1,3 @@
 #!/bin/bash
-
-output=$(realpath "$1")
-
-run_planAhead() {
-    planAhead -mode batch -source /dev/stdin <<EOF
-open_project /tmp/planahead/hw_src/project_1.ppr
-open_impl_design impl_1
-write_bitstream $output
-EOF
-}
+exec planahead_run "${1:-/tmp/planahead/hw_src/project_1.ppr}" \
+    impl_1 -to_step bitgen
