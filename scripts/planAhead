@@ -43,4 +43,4 @@ cd ~
 LANG=C
 QT_PLUGIN_PATH=
 QT_IM_MODULE=
-exec planAhead "$@"
+exec "$ISE_DS_PATH/PlanAhead/bin/planAhead" "$@"

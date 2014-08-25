@@ -1,9 +1,20 @@
 #!/bin/bash
 
 run_name=$1
+retry=0
+[[ $run_name =~ ^synth_ ]] && retry=1
 
-exec planAhead -mode batch -source /dev/stdin <<EOF
+run_planAhead() {
+    planAhead -mode batch -source /dev/stdin <<EOF
 open_project /tmp/planahead/hw_src/project_1.ppr
-launch_runs -runs $1
-wait_on_run $1
+reset_run $run_name
+launch_runs -runs $run_name
+wait_on_run $run_name
 EOF
+}
+
+if ((retry)); then
+    run_planAhead || run_planAhead
+else
+    run_planAhead
+fi
