@@ -1,0 +1,9 @@
+#!/bin/bash
+
+run_name=$1
+
+exec planAhead -mode batch -source /dev/stdin <<EOF
+open_project /tmp/planahead/hw_src/project_1.ppr
+launch_runs -runs $1
+wait_on_run $1
+EOF
