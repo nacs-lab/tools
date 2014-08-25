@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO fix planahead installation?
+
 declare -A PLANAHEAD_MAP
 PLANAHEAD_INSTALL_DIR=/opt/planahead
 NEW_HOME=~
@@ -9,13 +11,13 @@ NEW_HOME=~
 
 mkdir -p "${NEW_HOME}" "${PLANAHEAD_INSTALL_DIR}" "/tmp/planahead"
 
-ln -sf "${PLANAHEAD_INSTALL_DIR}" /tmp/planahead/planahead
-ln -sf "${NEW_HOME}" /tmp/planahead/home
+ln -sfT "${PLANAHEAD_INSTALL_DIR}" /tmp/planahead/planahead
+ln -sfT "${NEW_HOME}" /tmp/planahead/home
 
 for name in "${!PLANAHEAD_MAP[@]}"; do
     mkdir -p "${PLANAHEAD_MAP["${name}"]}"
     mkdir -p "$(dirname "/tmp/planahead/${name}")"
-    ln -sf "${PLANAHEAD_MAP["${name}"]}" "/tmp/planahead/${name}"
+    ln -sfT "${PLANAHEAD_MAP["${name}"]}" "/tmp/planahead/${name}"
 done
 
 export XAUTHORITY=${XAUTHORITY:-~/.Xauthority}
@@ -35,7 +37,7 @@ export PATH="$PATH:$ISE_DS_PATH/PlanAhead/bin"
 export XILINX="$ISE_DS_PATH/ISE/"
 export XILINX_DSP="$ISE_DS_PATH/ISE/"
 export XILINX_PLANAHEAD="$ISE_DS_PATH/PlanAhead/"
-. "$ISE_DS_PATH/settings64.sh"
+. "$ISE_DS_PATH/settings64.sh" &> /dev/null
 
 cd ~
 LANG=C
