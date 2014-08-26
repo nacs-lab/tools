@@ -9,6 +9,7 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/xilinx"
 
 install(FILES xilinx-fix-install xilinx-env xilinx-run
   planahead-run planahead-bitgen planahead-synth _xilinx-run
+  planahead-export-hw
   DESTINATION "${CMAKE_INSTALL_LIBEXECDIR}/xilinx"
   PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
   GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
