@@ -1,23 +1,5 @@
 #!/bin/bash
 
-declare -A XILINX_MAP
-XILINX_INSTALL_DIR=/opt/xilinx
-NEW_HOME=~
-
-[[ -f ~/.config/nacs-lab/xilinx_env.sh ]] && \
-    . ~/.config/nacs-lab/xilinx_env.sh
-
-mkdir -p "${NEW_HOME}" "${XILINX_INSTALL_DIR}" "/tmp/xilinx"
-
-ln -sfT "${XILINX_INSTALL_DIR}" /tmp/xilinx/planahead
-ln -sfT "${NEW_HOME}" /tmp/xilinx/home
-
-for name in "${!XILINX_MAP[@]}"; do
-    mkdir -p "${XILINX_MAP["${name}"]}"
-    mkdir -p "$(dirname "/tmp/xilinx/${name}")"
-    ln -sfT "${XILINX_MAP["${name}"]}" "/tmp/xilinx/${name}"
-done
-
 export XAUTHORITY=${XAUTHORITY:-~/.Xauthority}
 export HOME="/tmp/xilinx/home"
 
