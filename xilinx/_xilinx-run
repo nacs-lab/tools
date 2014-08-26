@@ -1,0 +1,8 @@
+#!/bin/bash
+if [[ $0 = _xilinx-run ]]; then
+    cmd=$1
+    shift
+else
+    cmd=$(basename "$0")
+fi
+exec xilinx run "$cmd" "$@"

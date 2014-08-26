@@ -1,6 +1,6 @@
 configure_file(xilinx.in xilinx @ONLY)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/xilinx"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/xilinx" _xilinx-run
   DESTINATION "${CMAKE_INSTALL_BINDIR}"
   PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
   GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
@@ -10,10 +10,30 @@ install(FILES xilinx-fix-install xilinx-env xilinx-run
   PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
   GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 
-install(FILES planAhead planahead_run planahead_bitgen planahead_synth
+install(FILES planahead_run planahead_bitgen planahead_synth
   DESTINATION "${CMAKE_INSTALL_BINDIR}"
   PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
   GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+
+execute_process(COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/.configure-stamp")
+
+add_custom_target(clear-symlink-dir
+  COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/clear-symlink-dir.sh"
+  "${CMAKE_CURRENT_BINARY_DIR}")
+
+foreach(execname planAhead xsdk)
+  add_custom_command(
+    OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/symlinks_stamps/${execname}"
+    COMMAND ln -sfT _xilinx-run
+    "${CMAKE_CURRENT_BINARY_DIR}/symlinks/${execname}"
+    COMMAND touch "${CMAKE_CURRENT_BINARY_DIR}/symlinks_stamps/${execname}"
+    DEPENDS clear-symlink-dir)
+  add_custom_target("create-symlink-${execname}" ALL
+    DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/symlinks_stamps/${execname}")
+endforeach()
+
+install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/symlinks/"
+  DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 # install(FILES planahead.desktop
 #   DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}"
