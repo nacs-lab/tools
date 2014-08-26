@@ -9,7 +9,7 @@ NEW_HOME=~
 
 mkdir -p "${NEW_HOME}" "${XILINX_INSTALL_DIR}" "/tmp/xilinx"
 
-ln -vsfT "${XILINX_INSTALL_DIR}" /tmp/xilinx/planahead
+ln -vsfT "${XILINX_INSTALL_DIR}" /tmp/xilinx/xilinx
 ln -vsfT "${NEW_HOME}" /tmp/xilinx/home
 
 for name in "${!XILINX_MAP[@]}"; do

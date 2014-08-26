@@ -3,7 +3,7 @@
 export XAUTHORITY=${XAUTHORITY:-~/.Xauthority}
 export HOME="/tmp/xilinx/home"
 
-XILINX_HOME="/tmp/xilinx/planahead/14.7"
+XILINX_HOME="/tmp/xilinx/xilinx/14.7"
 
 # export XILINXD_LICENSE_FILE=PORTNUMBER@HOSTNAME
 export XILINXD_LICENSE_FILE="${XILINX_HOME}/ISE_DS/xilinx_ise.lic"
