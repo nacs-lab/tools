@@ -1,13 +1,17 @@
-configure_file(xilinx_setup.in xilinx_setup @ONLY)
+configure_file(xilinx.in xilinx @ONLY)
 
-install(FILES planAhead planahead_run planahead_bitgen planahead_synth
-  "${CMAKE_CURRENT_BINARY_DIR}/xilinx_setup"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/xilinx"
   DESTINATION "${CMAKE_INSTALL_BINDIR}"
   PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
   GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 
-install(FILES setup-fix-install setup-env
+install(FILES xilinx-fix-install xilinx-env
   DESTINATION "${CMAKE_INSTALL_LIBEXECDIR}/xilinx"
+  PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+  GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+
+install(FILES planAhead planahead_run planahead_bitgen planahead_synth
+  DESTINATION "${CMAKE_INSTALL_BINDIR}"
   PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
   GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 
