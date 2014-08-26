@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Script to fix Xilinx SDK's broken installation on non-ancient Linux
+
+ise_ds_dir=$1
+
+die() {
+    printf "$@" >&2
+    exit 1
+}
+
+[[ -d "$1" ]] || die "Directory '%s' does not exist" "$1"
+
+chmod -R u+w "$1/common"
+
+# planAhead uses gmake
+ln -vsfT /usr/bin/make "$1/common/bin/lin/gmake"
+ln -vsfT /usr/bin/make "$1/common/bin/lin64/gmake"
+
+# TODO? find library first
+ln -vsfT /usr/lib/libstdc++.so "$1/common/lib/lin/libstdc++.so"
+ln -vsfT /usr/lib/libstdc++.so "$1/common/lib/lin/libstdc++.so.6"
+ln -vsfT /usr/lib/libstdc++.so "$1/common/lib/lin/libstdc++.so.6.0.8"
+ln -vsfT /usr/lib/libXm.so "$1/common/lib/lin/libXm.so.3"
+
+ln -vsfT /usr/lib/libstdc++.so "$1/common/lib/lin64/libstdc++.so"
+ln -vsfT /usr/lib/libstdc++.so "$1/common/lib/lin64/libstdc++.so.6"
+ln -vsfT /usr/lib/libstdc++.so "$1/common/lib/lin64/libstdc++.so.6.0.8"
+ln -vsfT /usr/lib/libXm.so "$1/common/lib/lin64/libXm.so.3"
+
+chmod -R og-rwx "$1"
+chmod -R u-w "$1/"*
