@@ -8,4 +8,4 @@ set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}"
 include(GNUInstallDirs)
 enable_testing()
 
-add_subdirectory(scripts)
+add_subdirectory(xilinx)

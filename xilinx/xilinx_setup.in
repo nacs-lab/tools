@@ -1,0 +1,5 @@
+#!/bin/bash
+
+LIBEXEC_DIR="@CMAKE_INSTALL_FULL_LIBEXECDIR@/xilinx"
+
+exec "${LIBEXEC_DIR}/setup-${1:-env}" "${@:2}"
