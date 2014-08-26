@@ -9,21 +9,21 @@ NEW_HOME=~
 [[ -f ~/.config/nacs-lab/planahead_env.sh ]] && \
     . ~/.config/nacs-lab/planahead_env.sh
 
-mkdir -p "${NEW_HOME}" "${PLANAHEAD_INSTALL_DIR}" "/tmp/planahead"
+mkdir -p "${NEW_HOME}" "${PLANAHEAD_INSTALL_DIR}" "/tmp/xilinx"
 
-ln -sfT "${PLANAHEAD_INSTALL_DIR}" /tmp/planahead/planahead
-ln -sfT "${NEW_HOME}" /tmp/planahead/home
+ln -sfT "${PLANAHEAD_INSTALL_DIR}" /tmp/xilinx/planahead
+ln -sfT "${NEW_HOME}" /tmp/xilinx/home
 
 for name in "${!PLANAHEAD_MAP[@]}"; do
     mkdir -p "${PLANAHEAD_MAP["${name}"]}"
-    mkdir -p "$(dirname "/tmp/planahead/${name}")"
-    ln -sfT "${PLANAHEAD_MAP["${name}"]}" "/tmp/planahead/${name}"
+    mkdir -p "$(dirname "/tmp/xilinx/${name}")"
+    ln -sfT "${PLANAHEAD_MAP["${name}"]}" "/tmp/xilinx/${name}"
 done
 
 export XAUTHORITY=${XAUTHORITY:-~/.Xauthority}
-export HOME="/tmp/planahead/home"
+export HOME="/tmp/xilinx/home"
 
-XILINX_HOME="/tmp/planahead/planahead/14.7"
+XILINX_HOME="/tmp/xilinx/planahead/14.7"
 
 # export XILINXD_LICENSE_FILE=PORTNUMBER@HOSTNAME
 export XILINXD_LICENSE_FILE="${XILINX_HOME}/ISE_DS/xilinx_ise.lic"
