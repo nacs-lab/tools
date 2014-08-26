@@ -1,21 +1,21 @@
 #!/bin/bash
 
-declare -A PLANAHEAD_MAP
-PLANAHEAD_INSTALL_DIR=/opt/planahead
+declare -A XILINX_MAP
+XILINX_INSTALL_DIR=/opt/xilinx
 NEW_HOME=~
 
 [[ -f ~/.config/nacs-lab/planahead_env.sh ]] && \
     . ~/.config/nacs-lab/planahead_env.sh
 
-mkdir -p "${NEW_HOME}" "${PLANAHEAD_INSTALL_DIR}" "/tmp/xilinx"
+mkdir -p "${NEW_HOME}" "${XILINX_INSTALL_DIR}" "/tmp/xilinx"
 
-ln -sfT "${PLANAHEAD_INSTALL_DIR}" /tmp/xilinx/planahead
+ln -sfT "${XILINX_INSTALL_DIR}" /tmp/xilinx/planahead
 ln -sfT "${NEW_HOME}" /tmp/xilinx/home
 
-for name in "${!PLANAHEAD_MAP[@]}"; do
-    mkdir -p "${PLANAHEAD_MAP["${name}"]}"
+for name in "${!XILINX_MAP[@]}"; do
+    mkdir -p "${XILINX_MAP["${name}"]}"
     mkdir -p "$(dirname "/tmp/xilinx/${name}")"
-    ln -sfT "${PLANAHEAD_MAP["${name}"]}" "/tmp/xilinx/${name}"
+    ln -sfT "${XILINX_MAP["${name}"]}" "/tmp/xilinx/${name}"
 done
 
 export XAUTHORITY=${XAUTHORITY:-~/.Xauthority}
