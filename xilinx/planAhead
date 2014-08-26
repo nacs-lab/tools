@@ -4,8 +4,8 @@ declare -A XILINX_MAP
 XILINX_INSTALL_DIR=/opt/xilinx
 NEW_HOME=~
 
-[[ -f ~/.config/nacs-lab/planahead_env.sh ]] && \
-    . ~/.config/nacs-lab/planahead_env.sh
+[[ -f ~/.config/nacs-lab/xilinx_env.sh ]] && \
+    . ~/.config/nacs-lab/xilinx_env.sh
 
 mkdir -p "${NEW_HOME}" "${XILINX_INSTALL_DIR}" "/tmp/xilinx"
 

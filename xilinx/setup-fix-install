@@ -9,24 +9,30 @@ die() {
     exit 1
 }
 
-[[ -d "$1" ]] || die "Directory '%s' does not exist" "$1"
+[[ -z "$ise_ds_dir" ]] && {
+    [[ -f ~/.config/nacs-lab/xilinx_env.sh ]] && \
+        . ~/.config/nacs-lab/xilinx_env.sh
+    ise_ds_dir="${XILINX_INSTALL_DIR}/14.7/ISE_DS"
+}
 
-chmod -R u+w "$1/common"
+[[ -d "$ise_ds_dir" ]] || die "Directory '%s' does not exist" "$ise_ds_dir"
+
+chmod -R u+w "$ise_ds_dir/common"
 
 # planAhead uses gmake
-ln -vsfT /usr/bin/make "$1/common/bin/lin/gmake"
-ln -vsfT /usr/bin/make "$1/common/bin/lin64/gmake"
+ln -vsfT /usr/bin/make "$ise_ds_dir/common/bin/lin/gmake"
+ln -vsfT /usr/bin/make "$ise_ds_dir/common/bin/lin64/gmake"
 
 # TODO? find library first
-ln -vsfT /usr/lib/libstdc++.so "$1/common/lib/lin/libstdc++.so"
-ln -vsfT /usr/lib/libstdc++.so "$1/common/lib/lin/libstdc++.so.6"
-ln -vsfT /usr/lib/libstdc++.so "$1/common/lib/lin/libstdc++.so.6.0.8"
-ln -vsfT /usr/lib/libXm.so "$1/common/lib/lin/libXm.so.3"
+ln -vsfT /usr/lib/libstdc++.so "$ise_ds_dir/common/lib/lin/libstdc++.so"
+ln -vsfT /usr/lib/libstdc++.so "$ise_ds_dir/common/lib/lin/libstdc++.so.6"
+ln -vsfT /usr/lib/libstdc++.so "$ise_ds_dir/common/lib/lin/libstdc++.so.6.0.8"
+ln -vsfT /usr/lib/libXm.so "$ise_ds_dir/common/lib/lin/libXm.so.3"
 
-ln -vsfT /usr/lib/libstdc++.so "$1/common/lib/lin64/libstdc++.so"
-ln -vsfT /usr/lib/libstdc++.so "$1/common/lib/lin64/libstdc++.so.6"
-ln -vsfT /usr/lib/libstdc++.so "$1/common/lib/lin64/libstdc++.so.6.0.8"
-ln -vsfT /usr/lib/libXm.so "$1/common/lib/lin64/libXm.so.3"
+ln -vsfT /usr/lib/libstdc++.so "$ise_ds_dir/common/lib/lin64/libstdc++.so"
+ln -vsfT /usr/lib/libstdc++.so "$ise_ds_dir/common/lib/lin64/libstdc++.so.6"
+ln -vsfT /usr/lib/libstdc++.so "$ise_ds_dir/common/lib/lin64/libstdc++.so.6.0.8"
+ln -vsfT /usr/lib/libXm.so "$ise_ds_dir/common/lib/lin64/libXm.so.3"
 
-chmod -R og-rwx "$1"
-chmod -R u-w "$1/"*
+chmod -R og-rwx "$ise_ds_dir"
+chmod -R u-w "$ise_ds_dir/"*
