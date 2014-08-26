@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# TODO fix planahead installation?
-
 declare -A PLANAHEAD_MAP
 PLANAHEAD_INSTALL_DIR=/opt/planahead
 NEW_HOME=~
