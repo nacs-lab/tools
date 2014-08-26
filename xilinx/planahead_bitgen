@@ -1,3 +1,0 @@
-#!/bin/bash
-exec planahead_run "${1:-/tmp/xilinx/hw_src/project_1.ppr}" \
-    impl_1 -to_step bitgen

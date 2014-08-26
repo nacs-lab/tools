@@ -1,3 +1,0 @@
-#!/bin/bash
-planahead_run "${1:-/tmp/xilinx/hw_src/project_1.ppr}" synth_1 || \
-    exec planahead_run "${1:-/tmp/xilinx/hw_src/project_1.ppr}" synth_1
