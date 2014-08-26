@@ -1,0 +1,53 @@
+#!/bin/bash
+
+die() {
+    printf "$@" >&2
+    exit 1
+}
+
+cmd=$1
+
+export XAUTHORITY=${XAUTHORITY:-~/.Xauthority}
+export HOME="/tmp/xilinx/home"
+
+XILINX_HOME="/tmp/xilinx/xilinx/14.7"
+
+# export XILINXD_LICENSE_FILE=PORTNUMBER@HOSTNAME
+export XILINXD_LICENSE_FILE="${XILINX_HOME}/ISE_DS/xilinx_ise.lic"
+
+ISE_DS_PATH="${XILINX_HOME}/ISE_DS"
+
+_XILINX_PATHS=("$ISE_DS_PATH/ISE/bin/lin64"
+    "$ISE_DS_PATH/EDK/bin/lin64"
+    "$ISE_DS_PATH/common/bin/lin64"
+    "$ISE_DS_PATH/ISE/sysgen/bin/lin64"
+    "$ISE_DS_PATH/ISE/sysgen/util"
+    "$ISE_DS_PATH/PlanAhead/bin")
+
+[[ $cmd =~ / ]] || {
+    for path in "${_XILINX_PATHS[@]}"; do
+        [[ -x "${path}/$cmd" ]] && {
+            cmd="${path}/$cmd"
+            break
+        }
+    done
+    [[ $cmd =~ / ]] || {
+        die "Cannot find command %s." "$cmd"
+    }
+}
+
+for path in "${_XILINX_PATHS[@]}"; do
+    PATH="${PATH}:${path}"
+done
+
+export PATH
+export XILINX="$ISE_DS_PATH/ISE/"
+export XILINX_DSP="$ISE_DS_PATH/ISE/"
+export XILINX_PLANAHEAD="$ISE_DS_PATH/PlanAhead/"
+. "$ISE_DS_PATH/settings64.sh" &> /dev/null
+
+cd ~
+LANG=C
+QT_PLUGIN_PATH=
+QT_IM_MODULE=
+exec "${cmd}" "${@:2}"
