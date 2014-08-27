@@ -2,6 +2,8 @@
 
 # Script to fix Xilinx SDK's broken installation on non-ancient Linux
 
+LIB_XILINX_DIR=$(dirname "${BASH_SOURCE}")
+
 ise_ds_dir=$1
 
 die() {
@@ -36,3 +38,6 @@ ln -vsfT /usr/lib/libXm.so "$ise_ds_dir/common/lib/lin64/libXm.so.3"
 
 chmod -R og-rwx "$ise_ds_dir"
 chmod -R u-w "$ise_ds_dir/"*
+
+ln -vsf "${LIB_XILINX_DIR}/xsdk-plugin/edu.harvard.nacs_lab.jar" \
+    "$ise_ds_dir/EDK/eclipse/lin64/eclipse/plugin/"
