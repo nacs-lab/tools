@@ -42,7 +42,11 @@ done
 
 export PATH
 export XILINX="$ISE_DS_PATH/ISE/"
-export XILINX_DSP="$ISE_DS_PATH/ISE/"
+export XILINX_EDK="${ISE_DS_PATH}/EDK"
+export XILINX_DSP="${ISE_DS_PATH}/ISE/"
+export ECLIPSE="${XILINX_EDK}/eclipse/lin64/eclipse/eclipse"
+export VM="${XILINX}/java6/lin/jre/bin"
+export WSPACE=~
 export XILINX_PLANAHEAD="$ISE_DS_PATH/PlanAhead/"
 . "$ISE_DS_PATH/settings64.sh" &> /dev/null
 

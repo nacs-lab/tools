@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LIBEXEC_DIR="@CMAKE_INSTALL_FULL_LIBEXECDIR@/xilinx"
+LIB_DIR="@CMAKE_INSTALL_FULL_LIBDIR@/xilinx"
 
 die() {
     printf "$@" >&2
@@ -9,4 +9,4 @@ die() {
 
 [[ -z "$1" ]] && die "Command not specified."
 
-exec "${LIBEXEC_DIR}/planahead-${1}" "${@:2}"
+exec "${LIB_DIR}/planahead-${1}" "${@:2}"
