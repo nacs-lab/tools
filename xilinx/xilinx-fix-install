@@ -36,8 +36,8 @@ ln -vsfT /usr/lib/libstdc++.so "$ise_ds_dir/common/lib/lin64/libstdc++.so.6"
 ln -vsfT /usr/lib/libstdc++.so "$ise_ds_dir/common/lib/lin64/libstdc++.so.6.0.8"
 ln -vsfT /usr/lib/libXm.so "$ise_ds_dir/common/lib/lin64/libXm.so.3"
 
-ln -vsf "${LIB_XILINX_DIR}/xsdk-plugin/edu.harvard.nacs_lab.jar" \
-    "$ise_ds_dir/EDK/eclipse/lin64/eclipse/plugins/"
+ln -vsf "${LIB_XILINX_DIR}/xsdk-plugin/" \
+    "$ise_ds_dir/EDK/eclipse/lin64/eclipse/dropins/"
 
 chmod -R og-rwx "$ise_ds_dir"
 chmod -R u-w "$ise_ds_dir/"*
