@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature id="edu.harvard.nacs_lab.feature"
+<feature id="edu.harvard.nacsLab.feature"
          label="NaCs Lab Plugin"
          version="1.0.0"
          provider-name="Ni Group @ Harvard"
-         plugin="edu.harvard.nacs_lab">
+         plugin="edu.harvard.nacsLab">
   <requires>
     <import plugin="org.eclipse.ui"/>
     <import plugin="org.eclipse.core.runtime"/>
@@ -146,7 +146,7 @@
             version="1.0.0" match="greaterOrEqual"/>
   </requires>
 
-  <plugin id="edu.harvard.nacs_lab"
+  <plugin id="edu.harvard.nacsLab"
           download-size="0"
           install-size="0"
           version="1.0.0"

@@ -5,7 +5,7 @@
               point="org.eclipse.core.runtime.applications">
       <application cardinality="singleton-global"
                    thread="main" visible="true">
-         <run class="edu.harvard.nacs_lab.create_project.Main"></run>
+         <run class="edu.harvard.nacsLab.createProject.Main"></run>
       </application>
    </extension>
 </plugin>

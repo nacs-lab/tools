@@ -1,4 +1,4 @@
-package edu.harvard.nacs_lab.create_project;
+package edu.harvard.nacsLab.createProject;
 
 import com.xilinx.sdk.api.XSDK;
 import java.io.PrintStream;
