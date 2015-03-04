@@ -50,7 +50,6 @@ export WSPACE=~
 export XILINX_PLANAHEAD="$ISE_DS_PATH/PlanAhead/"
 . "$ISE_DS_PATH/settings64.sh" &> /dev/null
 
-cd ~
 LANG=C
 QT_PLUGIN_PATH=
 QT_IM_MODULE=
