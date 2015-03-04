@@ -1,4 +1,4 @@
 #!/bin/bash
 # planAhead does NOT handle target dependencies correctly.
 MAKEFLAGS+=' -j1'
-exec xplanahead run "${1:-/tmp/xilinx/hw_src/project_1.ppr}" synth_1
+exec xplanahead run "${1}" synth_1

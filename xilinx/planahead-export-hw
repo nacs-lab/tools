@@ -1,6 +1,6 @@
 #!/bin/bash
 
-project="${1:-/tmp/xilinx/hw_src/project_1.ppr}"
+project="${1}"
 
 exec planAhead -mode batch -source /dev/stdin <<EOF
 open_project $project
