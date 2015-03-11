@@ -34,9 +34,3 @@ endforeach()
 
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/symlinks/"
   DESTINATION "${CMAKE_INSTALL_BINDIR}")
-
-# install(FILES planahead.desktop
-#   DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}"
-#   PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ)
-
-# add_subdirectory(xsdk-plugin)
